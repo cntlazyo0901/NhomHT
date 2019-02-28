@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>COMMENT _ JQUERY</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div>
+		<input id="content" type="text">
+		<button id="btn">COMMENT</button>
+	</div>
+	<div id="comment-content"></div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() 
+		{
+			var input = $('#content');
+			var commentList = $('#comment-content');
+			var nhaycam = ['abc', 'xyz', 'nhay', 'cam'];
+			$('#btn').on('click', function() 
+			{
+				var pTag = $("<p></p>");
+				// Chen noi dung viet thuong hoac hoa
+				var inputValue = input.val().toLowerCase();
+				// Vong lap kiem tra nhung chu trong mang nhaycam
+				for(var i = 0; i < nhaycam.length; i++) {
+					// Neu no xuat hien trong inputValue thi vi tri se > -1 or trả về -1 nếu giá trị cần tìm không bao giờ xảy ra.
+					if (inputValue.indexOf(nhaycam[i]) != -1) {
+						// Gan gia tri moi cho nhung cho can thay doi
+						inputValue = inputValue.replace(nhaycam[i], "***");
+					}
+				}
+				pTag.text(inputValue);
+				// pTag.text(input.val().toUpperCase());
+
+				commentList.append(pTag);
+				input.val('');
+			});
+		});
+	</script>
+</body>
+</html>
