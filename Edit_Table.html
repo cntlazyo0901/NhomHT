@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.form {
+			  background:#ffffff;
+			  color:#333;
+			}
+			tr{
+			  cursor:pointer;
+			}
+			.active {
+			  background:yellow;
+			}
+	</style>
+</head>
+<body>
+	<table>
+  <tr>
+    <td>001</td>
+    <td>Phan van a</td>
+    <td>Quản trị hệ thống</td>
+    <td><input type="checkbox" checked></td>
+    <td>Quản trị chung</td>
+  </tr>
+  <tr>
+  <td>002</td>
+    <td>Pham thi b</td>
+    <td>Người dùng </td>
+    <td><input type="checkbox"></td>
+    <td>Quản trị chung</td>
+  </tr>
+  <tr>
+    <td>003</td>
+    <td>Nguyen van c</td>
+    <td>Người dùng</td>
+    <td><input type="checkbox"></td>
+    <td>Quản trị chung</td>
+  </tr>
+</table>
+<div class="form">
+  <input type="text" id="id"><br>
+  <input type="text" id="name"><br>
+  <input type="text" id="group"><br>
+  <input type="checkbox" id="activities"><br>
+  <input type="text" id="note">
+  <button>Em ăn cơm chưa</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function()
+	{
+		$("tr").click(function() {
+		$("tr").removeClass("active");
+		$(this).addClass("active");
+		  $("#id").val($(this).find("td:nth-child(1)").text());
+		  $("#name").val($(this).find("td:nth-child(2)").text());
+		  $("#group").val($(this).find("td:nth-child(3)").text());
+		  $("#activities").prop("checked", $(this).find("td:nth-child(4) > input").is(':checked') ? true : false);
+		  $("#note").val($(this).find("td:nth-child(5)").text());
+		});
+
+		$("button").click(function() {
+			$("tr.active  td:nth-child(1)").text($("#id").val());
+		  $("tr.active  td:nth-child(2)").text($("#name").val());
+		  $("tr.active  td:nth-child(3)").text($("#group").val());
+		  $("tr.active  td:nth-child(4)  input").prop("checked", $("#activities").is(':checked') ? true : false);
+		  $("tr.active >td:nth-child(5)").text($("#note").val());
+		});
+	});
+</script>
+</body>
+</html>
